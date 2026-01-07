@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Fake Account Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ===== Top Left Logo ===== -->
+<div class="logo">
+    <img src="{{ url_for('static', filename='images/OIP.jpg') }}" alt="Instagram Logo">
+</div>
+
+<div class="container">
+    <h2>Instagram Fake Account Detector</h2>
+
+    <form action="/predict" method="post">
+
+        <input type="number" step="any" name="profile_pic" placeholder="Profile Pic (0 or 1)" required>
+        <input type="number" step="any" name="username_length" placeholder="Username Length" required>
+
+        <input type="number" step="any" name="fullname_words" placeholder="Full Name Words" required>
+        <input type="number" step="any" name="fullname_length" placeholder="Full Name Length" required>
+
+        <input type="number" step="any" name="name_equals_username" placeholder="Name = Username (0 or 1)" required>
+        <input type="number" step="any" name="description_length" placeholder="Bio Description Length" required>
+
+        <input type="number" step="any" name="external_url" placeholder="External URL (0 or 1)" required>
+        <input type="number" step="any" name="private" placeholder="Private Account (0 or 1)" required>
+
+        <input type="number" step="any" name="posts" placeholder="Number of Posts" required>
+        <input type="number" step="any" name="followers" placeholder="Number of Followers" required>
+
+        <input type="number" step="any" name="follows" placeholder="Number Following" required>
+
+        <button type="submit">Predict Account</button>
+    </form>
+
+
+    {% if prediction_text %}
+        <h3 class="{{ 'fake' if 'Fake' in prediction_text else 'genuine' }}">
+            {{ prediction_text }}
+        </h3>
+    {% endif %}
+ 
+
+</div>
+
+<!-- ===== Footer ===== -->
+<footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; color: #ffffff; font-size: 13px;">
+    © 2026 <strong>Avadhut Upadhye</strong> | Data Analyst Intern.
+</footer>
+
+</body>
+</html>
